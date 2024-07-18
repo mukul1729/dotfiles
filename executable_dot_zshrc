@@ -1,0 +1,50 @@
+# .zshrc
+autoload -U promptinit; promptinit
+zstyle :prompt:pure:path color red
+zstyle ':prompt:pure:prompt:*' color cyan
+prompt pure
+
+
+use_color=true
+set -o vi
+
+alias cat='bat'
+alias diff='difft'
+alias cp='rsync -pogbr -hhh --backup-dir="/tmp/rsync-${USERNAME}" -e /dev/null --progress "$@"'
+alias df='duf'
+alias free='free -m'                      # show sizes in MB
+alias ls='exa -a --grid --icons'                      # show sizes in MB
+alias v='nvim'
+alias o='xdg-open'
+alias top='btop'
+
+export HISTFILESIZE=1000000000
+export HISTSIZE=1000000000
+HISTFILE=~/.zsh_history
+SAVEHIST=$HISTSIZE
+setopt HIST_FIND_NO_DUPS
+# following should be turned off, if sharing history via setopt SHARE_HISTORY
+setopt INC_APPEND_HISTORY
+
+export MCFLY_KEY_SCHEME=vim
+export MCFLY_FUZZY=5
+export MCFLY_DISABLE_MENU=TRUE
+export MCFLY_RESULTS_SORT=LAST_RUN
+export MCFLY_PROMPT="❯"
+
+export PATH="$PATH:/home/mukul/.local/bin"
+export PATH="$PATH:/home/mukul/.dotnet/tools"
+export PATH="$PATH:/home/mukul/.cargo/bin"
+eval "$(zoxide init zsh)"
+eval "$(mcfly init zsh)"
+export VISUAL=nvim
+export EDITOR="$VISUAL"
+
+
+source /home/mukul/.config/broot/launcher/bash/br
+
+## [Completion]
+## Completion scripts setup. Remove the following line to uninstall
+[[ -f /home/mukul/.dart-cli-completion/zsh-config.zsh ]] && . /home/mukul/.dart-cli-completion/zsh-config.zsh || true
+## [/Completion]
+
