@@ -1,0 +1,16 @@
+font=Iosevka Regular 15
+text-color=#ebdbb2
+layer=overlay
+width=250
+max-icon-size=34
+
+background-color=#181818
+progress-color=#303030
+border-color=#303030
+
+border-size=3
+border-radius=2
+
+ignore-timeout=1
+default-timeout=5000
+margin=15
