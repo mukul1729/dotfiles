@@ -1,0 +1,387 @@
+{
+"layer": "top",
+//"mode": "dock",
+"exclusive": true,
+"passthrough": false,
+"position": "top",
+"spacing": 5,
+"fixed-center": true,
+"ipc": true,
+"margin-top": 3,
+"margin-left": 7,
+"margin-right": 8,
+
+"modules-left": [
+	"memory",
+	"disk",
+	"backlight",
+	"custom/line",
+	"custom/weather",
+	],
+
+"modules-center": [
+	"custom/updater",
+	"custom/line",
+	"clock",
+	"custom/separator#line",
+	//"hyprland/workspaces",
+	"river/tags",
+	"custom/dot-line",
+	"custom/trash",
+	], 
+
+"modules-right": [
+	"tray",
+	"battery",
+	"custom/line",
+	"custom/playerctl", 
+	"group/audio",
+	],
+
+"river/tags": {
+    "num-tags": 7,
+    "set-tags": [
+      1,
+      2,
+      3,
+      4,
+      5,
+	  6,
+	  7,
+    ],
+	"tag-labels":[
+		"㆒",
+		"二",
+		"三",
+		"四",
+		"五",
+		"六",
+		"七",
+	]
+},
+
+"hyprland/workspaces": {
+    "active-only":true,
+    "all-outputs": true,
+    "format": "{icon}",
+    "show-special": false,
+    "on-click": "activate",
+    "persistent-workspaces":{
+        "1": [],
+        "2": [],
+        "3": [],
+    },
+	"format-icons": {
+		"1": "一",
+		"2": "二",
+		"3": "三",
+		"4": "四",
+		"5": "五",
+		"6": "六",
+		"7": "七",
+		"8": "八",
+		"9": "九",
+		"10": "十",
+	}
+},
+
+"group/audio": {
+    "orientation": "horizontal",
+    "modules": [
+      "pulseaudio",
+      "pulseaudio#microphone",
+      ]	
+},
+ 
+"backlight": {
+    "interval": 2,
+    "align": 0,
+    "rotate": 0,
+    "format": "{icon}{percent}%",
+    "format-icons": ["󰃞 ", "󰃟 ", "󰃠 "],
+    "tooltip-format": "backlight {percent}%",
+    "icon-size": 10,
+    "on-scroll-up": "~/.config/river/scripts/Brightness.zsh --inc",
+    "on-scroll-down": "~/.config/river/scripts/Brightness.zsh --dec",
+    "smooth-scrolling-threshold": 1,
+},
+      
+"battery": {
+    "interval": 5,
+    "align": 0,
+    "rotate": 0,
+    "full-at": 100,
+    "design-capacity": false,
+    "states": {
+      "good": 95,
+      "warning": 30,
+      "critical": 10
+	 },
+    "format": "{icon}{capacity}%",
+    "format-charging": " {capacity}%",
+    "format-plugged": "󱘖  {capacity}%",
+	"format-alt-click": "click",
+    "format-full": "{icon} Full",
+    "format-alt": "{icon}{time}",
+	"format-icons": [" ", " ", " ", " ", " "],
+    "format-time": "{H}h.{M}m",
+    "tooltip": true,
+    "tooltip-format": "{timeTo} {power}w",
+},
+      
+"bluetooth": {
+    "format": "",
+    "format-disabled": "󰂳",
+    "format-connected": "󰂱 {num_connections}",
+    "tooltip-format": " {device_alias}",
+    "tooltip-format-connected": "{device_enumerate}",
+    "tooltip-format-enumerate-connected": " {device_alias} 󰂄{device_battery_percentage}%",
+    "tooltip": true,
+    "on-click": "blueman-manager",
+},
+     
+"clock": {
+    "interval": 10,
+	"timezone": "Asia/Kolkata",
+    "format": "{:%I:%M %p}", // AM PM format
+    "format-alt": "{:%H:%M %p %d %b,%a}",
+    "tooltip-format": "<tt><small>{calendar}</small></tt>",
+    "calendar": {
+      "mode"          : "year",
+      "mode-mon-col"  : 3,
+      "weeks-pos"     : "right",
+      "on-scroll"     : 1,
+      "format": {
+      "months":     "<span color='#ffead3'><b>{}</b></span>",
+      "days":       "<span color='#ecc6d9'><b>{}</b></span>",
+      "weeks":      "<span color='#99ffdd'><b>W{}</b></span>",
+      "weekdays":   "<span color='#ffcc66'><b>{}</b></span>",
+      "today":      "<span color='#ff6699'><b><u>{}</u></b></span>"
+                }
+                }
+    },              
+    "actions":  {
+      "on-click-right": "mode",
+      "on-click-forward": "tz_up",
+      "on-click-backward": "tz_down",
+      "on-scroll-up": "shift_up",
+      "on-scroll-down": "shift_down"
+},
+   
+"cpu": {
+    "format": " {usage}%",  
+    "interval": 10,
+    "on-click-right": "gnome-system-monitor",
+},
+    
+"disk": {
+    "interval": 30,
+    "path": "/",
+    //"format-alt-click": "click",
+    "format": "󰉉 {percentage_used}%",
+    "tooltip": true,
+    "tooltip-format": "{used} / {total}",
+},
+    
+"keyboard-state": {
+    //"numlock": true,
+    "capslock": true,
+    "format": {
+      "numlock": "N {icon}",
+    "capslock":"󰪛 {icon}",
+        }, 
+    "format-icons": {
+      "locked": "",
+      "unlocked": ""
+              },
+},
+    
+"memory": {
+    "interval": 10,
+    "format": "󰘚 {used:0.1f}GB",
+    "tooltip": true,
+    "tooltip-format": "{used:0.1f}GB/{total:0.1f}GB",
+},
+
+"network": {
+    "format": "{ifname}",
+    "format-wifi": "{icon}",
+    "format-ethernet": "󰌘",
+    "format-disconnected": "󰌙", 
+    "tooltip-format": "{ipaddr}  {bandwidthUpBytes}  {bandwidthDownBytes}",
+    "format-linked": "󰈁 {ifname} (No IP)",
+    "tooltip-format-wifi": "{essid} {icon} {signalStrength}%",
+    "tooltip-format-ethernet": "{ifname} 󰌘",
+    "tooltip-format-disconnected": "󰌙 Disconnected",
+    "max-length": 50,
+    "format-icons": ["󰤯","󰤟","󰤢","󰤥","󰤨"]
+},
+  
+"network#speed": {
+    "interval": 1,
+    "format": "{ifname}",
+    "format-wifi": "{icon}  {bandwidthUpBytes}  {bandwidthDownBytes}",
+    "format-ethernet": "󰌘   {bandwidthUpBytes}  {bandwidthDownBytes}",
+    "format-disconnected": "󰌙", 
+    "tooltip-format": "{ipaddr}",
+    "format-linked": "󰈁 {ifname} (No IP)",
+    "tooltip-format-wifi": "{essid} {icon} {signalStrength}%",
+    "tooltip-format-ethernet": "{ifname} 󰌘",
+    "tooltip-format-disconnected": "󰌙 Disconnected",
+    "max-length": 50,
+    "format-icons": ["󰤯","󰤟","󰤢","󰤥","󰤨"]
+},
+      
+"pulseaudio": {
+    "format": "{icon}{volume}%",
+    "format-muted": "󰖁 ",
+    "format-icons": {
+		"speaker": " ",
+        "headphone": " ",
+        "hands-free": " ",
+        "headset": " ",
+        "phone": " ",
+        "portable": " ",
+        "car": " ",
+    "ignored-sinks": ["Easy Effects Sink"],
+    },
+    "scroll-step": 5.0,
+    "on-click": "~/.config/river/scripts/Volume.zsh --toggle",
+    "on-click-right": "pavucontrol -t 3",
+    "on-scroll-up": "~/.config/river/scripts/Volume.zsh --inc",
+    "on-scroll-down": "~/.config/river/scripts/Volume.zsh --dec",
+	"tooltip-format": "{icon} {desc} | {volume}%",
+    "smooth-scrolling-threshold": 1,
+},
+      
+"pulseaudio#microphone": {
+    "format": "{format_source}",
+    "format-source": "{volume}% ",
+    "format-source-muted": "  ",
+    "on-click": "~/.config/river/scripts/Volume.zsh --toggle-mic",
+    "on-click-right": "pavucontrol -t 4",
+    "on-scroll-up": "~/.config/river/scripts/Volume.zsh --mic-inc",
+    "on-scroll-down": "~/.config/river/scripts/Volume.zsh --mic-dec",
+	"tooltip-format": "{source_desc} | {source_volume}%",
+    "smooth-scrolling-threshold": 1,
+    "scroll-step": 5,
+},
+    
+"temperature": {
+    "interval": 10,
+    "tooltip": true,
+    "hwmon-path": ["/sys/class/hwmon/hwmon1/temp1_input", "/sys/class/thermal/thermal_zone0/temp"],
+    "critical-threshold": 82,
+    "format-critical": "{icon}{temperatureC}°C",
+    "format": "{icon}{temperatureC}°C",
+    "format-icons": [""],
+    "on-click-right": "kitty --title nvtop sh -c 'nvtop'"
+},
+      
+"tray": {
+    "icon-size": 23,
+    "spacing": 5,
+},
+      
+"wlr/taskbar": {
+    "format": "{icon}",
+    "icon-size": 20,
+    "tooltip-format": "{title}",
+    "on-click": "maximize",
+    "ignore-list": [
+          "rofi",  
+          "kitty",  
+          "zsh",  
+   ]
+},
+      
+"custom/keyboard": {
+    "exec": "cat ~/.cache/kb_layout",
+    "interval": 1,
+    "format": " {}",
+    "on-click": "~/.config/river/scripts/SwitchKeyboardLayout.sh",
+    },
+    
+"custom/lock": {
+    "format": "󰌾{}",
+    "exec": "echo ; echo 󰷛  screen lock",
+    "interval" : 86400, // once every day
+    "tooltip": true,
+    "on-click": "~/.config/river/scripts/LockScreen.sh",
+},
+    
+"custom/playerctl": {
+    "format": "  <span>{}</span>",
+    "return-type": "json",
+    "max-length": 20,
+    "exec": "playerctl -a metadata --format '{\"text\": \"{{markup_escape(title)}}\", \"tooltip\": \"{{playerName}} : {{markup_escape(title)}}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' -F",
+    "on-click": "playerctl play-pause",
+    "scroll-step": 5.0,
+    "on-scroll-up": "~/.config/river/scripts/Volume.zsh --inc",
+    "on-scroll-down": "~/.config/river/scripts/Volume.zsh --dec",
+    "smooth-scrolling-threshold": 1,
+},
+
+"custom/power": {
+    "format": "⏻ ",
+    "exec": "echo ; echo 󰟡 power",
+	"on-click": "~/.config/river/scripts/Wlogout.sh",
+    "interval" : 86400, // once every day
+    "tooltip": true,
+},
+
+// NOTE:! This is only for Arch and Arch Based Distros  
+"custom/updater":{
+    "format": " {}",
+    "exec": "echo $(($(checkupdates | wc -l) + $(yay -Qum | wc -l)))",
+    "exec-if": "[[ $(checkupdates | wc -l) ]]",
+    "interval": 300,
+    "on-click": "kitty -T update yay -Syu || yay -Syu && notify-send 'The system has been updated'",
+},
+    
+"custom/trash":{
+    "format": " {}",
+    "exec": "~/.config/river/scripts/Trash.zsh",
+    "on-click": "~/.config/river/scripts/Trash.zsh --clean &",
+    "interval": 300,
+},
+
+"custom/weather": {
+    "format": "{}",
+    "interval": 300,
+    "return-type": "json",
+    "exec": "rdmd /home/mukul/.config/river/scripts/weather.d",
+	"exec-if": "ping openweathermap.org -c 1",
+    "tooltip" : true,
+},
+  
+  
+"custom/dot-line": {
+    "format": "",
+    "interval": "once",
+    "tooltip": false
+},
+  
+"custom/line": {
+    "format": "|",
+    "interval": "once",
+    "tooltip": false
+},
+  
+"custom/blank": {
+    "format": " ",
+    "interval": "once",
+    "tooltip": false
+}
+}
+  
+  
+
+
+
+
+
+
+
+
+

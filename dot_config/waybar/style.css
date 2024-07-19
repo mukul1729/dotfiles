@@ -1,0 +1,109 @@
+/* ---- 💫 https://github.com/JaKooLit 💫 ---- */
+/* Simple Style */
+
+
+@define-color background #1d2021;
+@define-color background #181818;
+@define-color foreground #ebdbb2;
+@define-color dim        #928374;
+@define-color yellow     #fabd2f;
+@define-color red        #fb4934;
+@define-color green      #b8bb26;
+@define-color blue       #5e81ac;
+
+* {
+  background: @background;
+  font-family: "Iosevka Nerd Font";
+  font-size: 22px;
+  border: none;
+  border-radius: 4;
+  /*border: 1px solid @foreground;*/
+}
+
+window#waybar {
+  background: transparent;
+  color: @foreground;
+  transition-property: background-color;
+  transition-duration: 0.5s;
+  border-radius: 10px;
+  transition: none;
+}
+
+#taskbar button,
+#tags button {
+  color: @foreground;
+  border-radius: 3;
+}
+
+#tags button.occupied {
+  border-bottom: 1px solid @yellow;
+  border-radius: 0;
+}
+
+#tags button.focused {
+  border-bottom: 1px solid @blue;
+  border-radius: 0;
+ }
+
+#tags button.urgent {
+  border-bottom: 1px solid @red;
+  border-radius: 0;
+ }
+
+#submap {
+  border-bottom: 1px solid @red;
+  border-radius: 0;
+}
+
+#backlight,
+#battery,
+#bluetooth,
+#clock,
+#cpu,
+#disk,
+#idle_inhibitor,
+#memory,
+#mode,
+#mpris,
+#network,
+#pulseaudio,
+#taskbar button,
+#taskbar,
+#temperature,
+#tray,
+#window,
+#wireplumber,
+#tags,
+#custom-backlight,
+#custom-menu,
+#custom-power,
+#custom-updater,
+#custom-weather {
+  color: @foreground;
+  padding: 3px 6px 3px 6px;
+}
+
+#battery.warning,
+#disk.warning,
+#memory.warning,
+#cpu.warning {
+  border-top: 3px solid @background;
+  border-bottom: 3px solid @yellow;
+  border-radius: 0;
+}
+
+#battery.critical,
+#disk.critical,
+#memory.critical,
+#cpu.critical {
+  border-top: 3px solid @background;
+  border-bottom: 3px solid @red;
+  border-radius: 0;
+}
+
+#battery.charging {
+  border-top: 3px solid @background;
+  border-bottom: 3px solid @green;
+  border-radius: 0;
+}
+
