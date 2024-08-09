@@ -1,0 +1,5 @@
+[url "https://"]
+	insteadOf = git://
+[user]
+	email = mukuljoshix@gmail.com
+	name = Mukul Joshi
