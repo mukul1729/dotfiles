@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-SELECTION="$(printf "1 - Lock\n2 - Suspend\n3 - Log out\n4 - Hibernate\n5 - Reboot\n6 - Shutdown" | fuzzel --dmenu -l 6 -p "")"
+SELECTION="$(printf "  Lock\n󰤄  Suspend\n󰍃  Log out\n  Hibernate\n  Reboot\n󰚦  Shutdown" | fuzzel --dmenu -l 6 -p "")"
 
 case $SELECTION in
 	*"Lock")

@@ -1,6 +1,6 @@
 {
 "layer": "top",
-//"mode": "dock",
+//"mode": "hide",
 "exclusive": true,
 "passthrough": false,
 "position": "top",
@@ -26,6 +26,7 @@
 	"custom/separator#line",
 	//"hyprland/workspaces",
 	"river/tags",
+	//"sway/workspaces",
 	"custom/dot-line",
 	"custom/trash",
 	], 
@@ -34,8 +35,9 @@
 	"tray",
 	"battery",
 	"custom/line",
-	"custom/playerctl", 
+	//"custom/playerctl", 
 	"group/audio",
+	"river/mode",
 	],
 
 "river/tags": {
@@ -59,6 +61,23 @@
 		"七",
 	]
 },
+    "sway/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": true,
+        "format": "{icon}",
+        "format-icons": {
+            "1": "1 ",
+            "2": "2 ",
+            "3": "3 ",
+            "4": "4 ",
+            "5": "5 ",
+            "6": "6 ",
+            "7": "7",
+            "8": "8",
+            "9": "9",
+            "10": "10"
+        }
+    },
 
 "hyprland/workspaces": {
     "active-only":true,
@@ -257,7 +276,7 @@
 "pulseaudio#microphone": {
     "format": "{format_source}",
     "format-source": "{volume}% ",
-    "format-source-muted": "  ",
+    "format-source-muted": " ",
     "on-click": "~/.config/river/scripts/Volume.zsh --toggle-mic",
     "on-click-right": "pavucontrol -t 4",
     "on-scroll-up": "~/.config/river/scripts/Volume.zsh --mic-inc",
@@ -335,7 +354,7 @@
     "format": " {}",
     "exec": "echo $(($(checkupdates | wc -l) + $(yay -Qum | wc -l)))",
     "exec-if": "[[ $(checkupdates | wc -l) ]]",
-    "interval": 300,
+    "interval": 60,
     "on-click": "kitty -T update yay -Syu || yay -Syu && notify-send 'The system has been updated'",
 },
     
@@ -348,9 +367,9 @@
 
 "custom/weather": {
     "format": "{}",
-    "interval": 300,
+    "interval": 60,
     "return-type": "json",
-    "exec": "rdmd /home/mukul/.config/river/scripts/weather.d",
+    "exec": "/home/mukul/.config/river/scripts/exe/weather",
 	"exec-if": "ping openweathermap.org -c 1",
     "tooltip" : true,
 },

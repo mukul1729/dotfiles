@@ -1,0 +1,14 @@
+[Added Associations]
+image/jpeg=feh.desktop;oculante.desktop;
+image/png=oculante.desktop;
+image/gif=oculante.desktop;
+application/x-bittorrent=transmission-gtk.desktop;
+video/x-matroska=vlc.desktop;mpv.desktop;
+text/html=firefox.desktop;
+application/pdf=org.pwmt.zathura-pdf-poppler.desktop;
+image/heif=oculante.desktop;
+video/mp4=mpv.desktop;
+
+[Default Applications]
+image/heif=oculante.desktop
+x-scheme-handler/mailto=google-chrome.desktop

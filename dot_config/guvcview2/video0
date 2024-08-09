@@ -1,0 +1,52 @@
+#Guvcview 2.1.0 config file
+
+#video input width
+width=1280
+#video input height
+height=720
+#video input format
+v4l2_format=1196444237
+#video input capture method
+capture=mmap
+#audio api
+audio=port
+#gui api
+gui=gtk3
+#render api
+render=sdl
+#video codec [raw mjpg mpeg flv1 wmv1 mpg2 mp43 dx50 h264 vp80 theo]
+video_codec=dx50
+#audio codec [pcm mp2 mp3 aac ac3 vorb]
+audio_codec=mp2
+#profile name
+profile_name=default.gpfl
+#profile path
+profile_path=/home/mukul/.config/guvcview2
+#video name
+video_name=my_video.mkv
+#video path
+video_path=/home/mukul
+#video sufix flag
+video_sufix=1
+#photo name
+photo_name=my_photo.jpg
+#photo path
+photo_path=/home/mukul
+#photo sufix flag
+photo_sufix=1
+#fps numerator (def. 1)
+fps_num=1
+#fps denominator (def. 25)
+fps_denom=25
+#audio device index (-1 - api default)
+audio_device=3
+#video fx mask 
+video_fx=0x0
+#fx binary filter treshold (0x0 to 0xff): default=0x7f (50%)
+fx_bin_treshold=0x7f
+#audio fx mask 
+audio_fx=0x0
+#OSD mask 
+osd_mask=0x0
+crosshair_color=0xff00
+crosshair_size=24

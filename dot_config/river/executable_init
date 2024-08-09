@@ -14,12 +14,12 @@
 
 
 riverctl map normal Super Return spawn kitty
+#riverctl map normal Super D spawn "discord --enable-features=UseOzonePlatform --ozone-platform=wayland"
 riverctl map normal Super R spawn fuzzel
 riverctl map normal Control+Shift R spawn "/home/mukul/.config/river/init"
 riverctl map normal Super V spawn "/home/mukul/.config/river/scripts/ClipManager.zsh"
+riverctl map normal Super D spawn "/home/mukul/.config/river/scripts/Display.zsh"
 riverctl map normal Super P spawn "/home/mukul/.config/river/scripts/Powermenu.zsh"
-
-#riverctl map normal None Print spawn 'IMG=~/Pictures/Screenshots/$(date | sed "s/\s/-/g" | sed "s/--/-/g").png&&grim -g "$(slurp)" $IMG && cat $IMG | wl-copy && notify-send "Screenshot has been saved and copied to your clipboard" -a "grim" -u normal -t 2000'
 
 riverctl map normal None Print spawn "/home/mukul/.config/river/scripts/Screenshot.zsh"
 
@@ -47,7 +47,7 @@ riverctl map normal Super+Shift Period send-to-output next
 riverctl map normal Super+Shift Comma send-to-output previous
 
 # Super+Return to bump the focused view to the top of the layout stack
-#riverctl map normal Super Return zoom
+riverctl map normal Super+Shift Return zoom
 
 # Super+H and Super+L to decrease/increase the main ratio of rivertile(1)
 riverctl map normal Super H send-layout-cmd rivertile "main-ratio -0.05"
@@ -159,10 +159,19 @@ do
     riverctl map $mode None XF86Rfkill spawn "/home/mukul/.config/river/scripts/AirplaneMode.zsh"
 done
 
+riverctl declare-mode launcher
+riverctl map normal   Super z      enter-mode launcher
+riverctl map launcher None f spawn firefox
+riverctl map launcher None g spawn "google-chrome-stable"
+riverctl map launcher None m spawn "MOZ_ENABLE_WAYLAND=1 thunderbird"
+#riverctl map normal Super N spawn "WEBKIT_DISABLE_COMPOSITING_MODE=1 nyxt"
+riverctl map launcher None t spawn thunar
+riverctl map launcher None Escape enter-mode normal
+
 # Set background and border color
-riverctl border-width 3
-riverctl border-color-focused 0x5e81ac
-riverctl border-color-unfocused 0x4c566a
+riverctl border-width 2
+riverctl border-color-unfocused 0x353535
+riverctl border-color-focused 0xffffff
 
 # Set keyboard repeat rate
 riverctl set-repeat 50 300
@@ -172,33 +181,28 @@ riverctl set-repeat 50 300
 
 # Make all views with app-id "bar" and any title use client-side decorations
 riverctl rule-add ssd
+riverctl xcursor-theme capitaine-cursors
+
+#riverctl rule-add -app-id "bar" csd
+riverctl rule-add -app-id float float
+riverctl rule-add -app-id 'org.pulseaudio.pavucontrol' float
+riverctl rule-add -app-id 'GParted' float
+riverctl rule-add -app-id 'nwg-look' float
+riverctl rule-add -app-id 'blueman-manager' float
+riverctl rule-add -app-id 'firefox' -title 'Picture-in-Picture' float
+riverctl rule-add -title 'gtk*' float
+riverctl rule-add -app-id 'xdg-desktop-portal-gtk' float
+
 
 #enable tap to click
 riverctl input pointer-1267-91-Elan_Touchpad tap enabled
 riverctl input pointer-1267-91-Elan_Touchpad pointer-accel 0.7
 
-
 # Set the default layout generator to be rivertile and start it.
 # River will send the process group of the init executable SIGTERM on exit.
-riverctl default-layout rivertile
-rivertile -view-padding 3 -outer-padding 3 &
+#riverctl set-repeat 50 300
 
 riverctl spawn "dbus-update-activation-environment SEATD_SOCK DISPLAY WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=river"
-
-#executes="polkit-mate-aut waybar wlsunset nm-applet swaybg mako"
-#for execute in $executes; do
-#	pgrep -fx "$execute" && continue
-#	case $execute in
-#	"polkit-mate-aut") /usr/lib/mate-polkit/polkit-mate-authentication-agent-1 &;;
-#	"wlsunset") "$execute" -S 06:30 -s 19:00 & ;;
-#	"swaybg") "$execute" -i /home/mukul/Pictures/Upscaled/love_story.png -m fill;;
-#	#"swayidle") "$execute" -w \
-#	#	timeout 300 "lock" \
-#	#	timeout 600 "wlopm --off '*'" resume "wlopm --on '*'" \
-#	#	before-sleep "lock" & ;;
-#	*) "$execute" & ;;
-#	esac
-#done >/dev/null 2>&1
 
 processes=("wlsunset" "swaybg" "polkit-mate-aut" "nm-applet" "blueman-applet" "waybar" "mako")
 
@@ -209,16 +213,27 @@ for process in "${processes[@]}"; do
 done
 
 xset b off &
+nm-applet &
 wl-paste --watch cliphist store &
 /usr/lib/mate-polkit/polkit-mate-authentication-agent-1 &
-wlsunset -S 06:30 -s 19:00 &
-swaybg -i /home/mukul/Pictures/Upscaled/love_story.png -m fill &
+swaybg -i /home/mukul/Pictures/Wallpapers/CableCars.jpg -m fill &
 waybar &
 mako &
-nm-applet &
 #blueman-applet &
+#wlsunset -S 06:30 -s 19:00 &
 
+riverctl default-layout rivertile
+rivertile -view-padding 3 -outer-padding 3 -main-ratio 0.5 &
 
-
-
+#swayidle -w \
+#    timeout 1200 'swaylock -f -i ~/Imágenes/wallpaper/Knights_blur.png'\
+#    timeout 1500 'wlopm --off LVDS-1 && systemctl suspend' \
+#    resume 'wlopm --on \*' \
+#    before-sleep 'swaylock -f -i ~/Imágenes/wallpaper/Knights_blur.png'>/dev/null 2>&1 &
+#
+# Environment Variables
+export MOZ_ENABLE_WAYLAND=1
+export WLR_NO_HARDWARE_CURSORS=1
+export XDG_CURRENT_DESKTOP=wlroots
+#QT_QPA_PLATFORMTHEME=qt6ct
 
